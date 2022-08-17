@@ -24,6 +24,9 @@
 		80DA24F228ACE2380004B02B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA24F128ACE2380004B02B /* TabBarController.swift */; };
 		80DA24F428ACE7950004B02B /* UpComingMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA24F328ACE7950004B02B /* UpComingMovieViewController.swift */; };
 		80DA24F628ACE9090004B02B /* TopRatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA24F528ACE9090004B02B /* TopRatedViewController.swift */; };
+		80DA24F828AD79850004B02B /* PopularMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA24F728AD79850004B02B /* PopularMovieCell.swift */; };
+		80DA24FB28AD86040004B02B /* UpComingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA24FA28AD86040004B02B /* UpComingCell.swift */; };
+		80DA24FD28AD86280004B02B /* TopRatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA24FC28AD86280004B02B /* TopRatedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		80DA24F128ACE2380004B02B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		80DA24F328ACE7950004B02B /* UpComingMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingMovieViewController.swift; sourceTree = "<group>"; };
 		80DA24F528ACE9090004B02B /* TopRatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedViewController.swift; sourceTree = "<group>"; };
+		80DA24F728AD79850004B02B /* PopularMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieCell.swift; sourceTree = "<group>"; };
+		80DA24FA28AD86040004B02B /* UpComingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingCell.swift; sourceTree = "<group>"; };
+		80DA24FC28AD86280004B02B /* TopRatedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +174,7 @@
 				80DA24F328ACE7950004B02B /* UpComingMovieViewController.swift */,
 				80DA24F528ACE9090004B02B /* TopRatedViewController.swift */,
 				80DA24F128ACE2380004B02B /* TabBarController.swift */,
+				80DA24F928AD7CCE0004B02B /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,6 +196,16 @@
 				80DA24EF28ABBD820004B02B /* Results.swift */,
 			);
 			path = PopularMovieModel;
+			sourceTree = "<group>";
+		};
+		80DA24F928AD7CCE0004B02B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				80DA24F728AD79850004B02B /* PopularMovieCell.swift */,
+				80DA24FA28AD86040004B02B /* UpComingCell.swift */,
+				80DA24FC28AD86280004B02B /* TopRatedCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +349,9 @@
 				80DA24F228ACE2380004B02B /* TabBarController.swift in Sources */,
 				80DA24ED28ABBAF90004B02B /* PopularMovieModel.swift in Sources */,
 				80DA24F428ACE7950004B02B /* UpComingMovieViewController.swift in Sources */,
+				80DA24FB28AD86040004B02B /* UpComingCell.swift in Sources */,
+				80DA24F828AD79850004B02B /* PopularMovieCell.swift in Sources */,
+				80DA24FD28AD86280004B02B /* TopRatedCell.swift in Sources */,
 				80DA24E628ABB91B0004B02B /* RemoteMovieManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

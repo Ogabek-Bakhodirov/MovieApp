@@ -8,11 +8,30 @@
 import UIKit
 
 class TopRatedViewController: UIViewController{
-    lazy var newToken: UILabel = {
-        let view = UILabel()
+    
+    private lazy var headerView: UIView = {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = .black
-        view.text = "Top"
+        view.backgroundColor = #colorLiteral(red: 0.05196797848, green: 0.1966994107, blue: 0.3150942922, alpha: 1)
+        
+        return view
+    }()
+    
+    private lazy var logoImage: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "logo_TMDB")
+        view.contentMode = .scaleAspectFit
+        
+        return view
+    }()
+    
+    private lazy var tableView: UITableView = {
+        let view = UITableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.register(TopRatedCell.self, forCellReuseIdentifier: TopRatedCell.cellName)
+        view.delegate = self
+        view.dataSource = self
         
         return view
     }()
@@ -22,14 +41,39 @@ class TopRatedViewController: UIViewController{
         setupSubviews()
     }
 
-    func setupSubviews(){
-        view.addSubview(newToken)
+    private func setupSubviews(){
+        view.addSubview(headerView)
+        view.addSubview(logoImage)
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            newToken.topAnchor.constraint(equalTo: view.topAnchor),
-            newToken.leftAnchor.constraint(equalTo: view.leftAnchor),
-            newToken.rightAnchor.constraint(equalTo: view.rightAnchor),
-            newToken.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            headerView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 60),
+            
+            logoImage.topAnchor.constraint(equalTo: headerView.topAnchor),
+            logoImage.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 20),
+            logoImage.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -20),
+            logoImage.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
 }
+
+extension TopRatedViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TopRatedCell.cellName) as? TopRatedCell else {
+            return UITableViewCell()
+        }
+        return cell
+    }
+} 

@@ -11,7 +11,7 @@ class PopularMovieViewController: UIViewController {
     
     var loader: PopularMovieProtocol?
     
-    lazy var headerView: UIView = {
+    private lazy var headerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = #colorLiteral(red: 0.05196797848, green: 0.1966994107, blue: 0.3150942922, alpha: 1)
@@ -19,7 +19,7 @@ class PopularMovieViewController: UIViewController {
         return view
     }()
     
-    lazy var logoImage: UIImageView = {
+    private lazy var logoImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "logo_TMDB")
@@ -27,9 +27,17 @@ class PopularMovieViewController: UIViewController {
         
         return view
     }()
-
     
-    lazy var newToken: UILabel = {
+    private lazy var tableView: UITableView = {
+        let view = UITableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
+        view.dataSource = self
+        view.register(PopularMovieCell.self, forCellReuseIdentifier: PopularMovieCell.cellName)
+        return view
+    }()
+    
+    private lazy var newToken: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textColor = .black
@@ -44,10 +52,10 @@ class PopularMovieViewController: UIViewController {
         fetchData()
     }
 
-    func setupSubviews(){
+    private func setupSubviews(){
         view.addSubview(headerView)
         view.addSubview(logoImage)
-        view.addSubview(newToken)
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -60,14 +68,14 @@ class PopularMovieViewController: UIViewController {
             logoImage.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -20),
             logoImage.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
             
-            newToken.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-            newToken.leftAnchor.constraint(equalTo: view.leftAnchor),
-            newToken.rightAnchor.constraint(equalTo: view.rightAnchor),
-            newToken.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
     
-    func fetchData(){
+    private func fetchData(){
         loader?.getPopularMovie(completion: { result in
             switch result{
             case let .success(popularMovie):
@@ -82,3 +90,16 @@ class PopularMovieViewController: UIViewController {
     }
 }
 
+extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        100
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularMovieCell.cellName) as? PopularMovieCell else {return 
+            UITableViewCell()
+        }
+        return cell
+    }
+}
