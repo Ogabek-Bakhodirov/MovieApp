@@ -7,14 +7,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PopularMovieViewController: UIViewController {
     
     var loader: PopularMovieProtocol?
+    
     
     lazy var newToken: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = .white
+        view.textColor = .black
+        view.text = "popular"
         
         return view
     }()

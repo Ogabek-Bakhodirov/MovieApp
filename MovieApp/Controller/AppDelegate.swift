@@ -15,9 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         window?.makeKeyAndVisible()
-        let viewController = ViewController()
+        
+        let tabbarViewController = TabBarController()
+        
+        let viewController = PopularMovieViewController()
         viewController.loader = RemoteMovieManager()
-        window?.rootViewController = viewController
+        window?.rootViewController = tabbarViewController
         return true
     }
 }
