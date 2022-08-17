@@ -22,6 +22,7 @@ class TabBarController: UITabBarController{
         let popularMoviePage = PopularMovieViewController()
         popularMoviePage.tabBarItem.image = .init(systemName: "flame")
         popularMoviePage.tabBarItem.title = "Popular"
+        popularMoviePage.loader = RemoteMovieManager()
 
         let upcomingMoviePage = UpComingMovieViewController()
         upcomingMoviePage.tabBarItem.image = .init(systemName: "sparkles")

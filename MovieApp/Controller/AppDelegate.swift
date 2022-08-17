@@ -17,9 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let tabbarViewController = TabBarController()
-        
-        let viewController = PopularMovieViewController()
-        viewController.loader = RemoteMovieManager()
+//        let navigationControlle = UINavigationController(rootViewController: tabbarViewController)
         window?.rootViewController = tabbarViewController
         return true
     }
