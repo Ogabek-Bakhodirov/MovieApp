@@ -27,6 +27,7 @@
 		80DA24F828AD79850004B02B /* PopularMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA24F728AD79850004B02B /* PopularMovieCell.swift */; };
 		80DA24FB28AD86040004B02B /* UpComingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA24FA28AD86040004B02B /* UpComingCell.swift */; };
 		80DA24FD28AD86280004B02B /* TopRatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DA24FC28AD86280004B02B /* TopRatedCell.swift */; };
+		80DF5B6B28AD936700071962 /* PopularMovieURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DF5B6A28AD936700071962 /* PopularMovieURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		80DA24F728AD79850004B02B /* PopularMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieCell.swift; sourceTree = "<group>"; };
 		80DA24FA28AD86040004B02B /* UpComingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingCell.swift; sourceTree = "<group>"; };
 		80DA24FC28AD86280004B02B /* TopRatedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedCell.swift; sourceTree = "<group>"; };
+		80DF5B6A28AD936700071962 /* PopularMovieURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 				80DA24E528ABB91B0004B02B /* RemoteMovieManager.swift */,
 				80DA24E728ABB9660004B02B /* LocalMovieManager.swift */,
 				80DA24EA28ABBA370004B02B /* PopularMovieProtocol.swift */,
+				80DF5B6928AD934300071962 /* URLModel */,
 			);
 			path = PopularMovieManager;
 			sourceTree = "<group>";
@@ -206,6 +209,14 @@
 				80DA24FC28AD86280004B02B /* TopRatedCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		80DF5B6928AD934300071962 /* URLModel */ = {
+			isa = PBXGroup;
+			children = (
+				80DF5B6A28AD936700071962 /* PopularMovieURL.swift */,
+			);
+			path = URLModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,6 +355,7 @@
 				80DA24E228ABA2F90004B02B /* TokenModel.swift in Sources */,
 				80DA24AF28ABA27A0004B02B /* AppDelegate.swift in Sources */,
 				80DA24F628ACE9090004B02B /* TopRatedViewController.swift in Sources */,
+				80DF5B6B28AD936700071962 /* PopularMovieURL.swift in Sources */,
 				80DA24E828ABB9660004B02B /* LocalMovieManager.swift in Sources */,
 				80DA24EB28ABBA370004B02B /* PopularMovieProtocol.swift in Sources */,
 				80DA24F228ACE2380004B02B /* TabBarController.swift in Sources */,

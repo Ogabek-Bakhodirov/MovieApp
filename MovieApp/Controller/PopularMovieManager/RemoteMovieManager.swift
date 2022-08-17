@@ -17,10 +17,8 @@ class RemoteMovieManager: PopularMovieProtocol{
         urlComponent.queryItems = [URLQueryItem(name: "api_key", value: "a86762fb6e7d30af415377e4d8eb69d8"),
                         URLQueryItem(name: "language", value: "en-US"),
                         URLQueryItem(name: "page", value: "1")]
-//        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=a86762fb6e7d30af415377e4d8eb69d8&language=en-US&page=1")
-        
+ 
         guard let url = URL(string: "\(urlComponent)") else {return}
-        print(url)
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) {data, response, error in 
             guard let data = data, let response = response else {
@@ -28,7 +26,10 @@ class RemoteMovieManager: PopularMovieProtocol{
             }
             let decoder = JSONDecoder()
             guard let popularMovie = try? decoder.decode(PopularMovieModel.self, from: data) else {
-                return completion(.failure(UnExpectedData().unExpectedData() as! Error))
+                if let error = error{
+                    completion(.failure(error))
+                }
+                return
             }
             completion(.success(popularMovie))
         }
