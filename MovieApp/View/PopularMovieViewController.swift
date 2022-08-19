@@ -10,7 +10,7 @@ import UIKit
 class PopularMovieViewController: UIViewController {
     
     var loader: PopularMovieProtocol?
-    var popularMovie: PopularMovieModel?
+    var popularMovie: [Result] = []
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -80,7 +80,8 @@ class PopularMovieViewController: UIViewController {
         loader?.getPopularMovie(completion: { result in
             switch result{
             case let .success(popularMovie):
-                self.popularMovie = popularMovie
+                self.popularMovie = popularMovie.results
+                self.tableView.reloadData()
                 DispatchQueue.main.async {
                     self.newToken.text = "\(popularMovie.totalResults)"
                 }
@@ -88,13 +89,12 @@ class PopularMovieViewController: UIViewController {
                 print("\(error.localizedDescription) errr" )
             }
         }) 
-        tableView.reloadData()
     }
 }
 
 extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        100
+        popularMovie.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,9 +102,8 @@ extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularMovieCell.cellName) as? PopularMovieCell else {return 
             UITableViewCell()
         }
-        if let popularMovie = popularMovie{
-            cell.titleLabel.text = "\(popularMovie.totalPages)"
-        }
+        cell.titleLabel.text = "\(popularMovie[indexPath.row].original_title)"
+        
         return cell
     }
 }

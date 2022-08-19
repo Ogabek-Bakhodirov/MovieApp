@@ -7,21 +7,21 @@
 
 import Foundation
 
-struct PopularMovieModel: Codable{
+struct PopularMovieModel: Codable {
     var page: Int?
-    var result: [Result]?
+    var results: [Result]
     var totalResults: Int?
     var totalPages: Int?
     
     enum CodingKeys: String, CodingKey{
         case page
-        case result
+        case results
         case totalResults = "total_results"
         case totalPages = "total_pages"
     }
 }
 
-struct Result: Codable{
+struct Result: Codable {
     var poster_path: String?
     var adult: Bool
     var overview: String
