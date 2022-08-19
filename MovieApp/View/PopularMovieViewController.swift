@@ -10,7 +10,8 @@ import UIKit
 class PopularMovieViewController: UIViewController {
     
     var loader: PopularMovieProtocol?
-    var popularMovie: [Result] = []
+    var popularMovie: [Results] = []
+    var movieImage: MovieImage?
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -35,15 +36,6 @@ class PopularMovieViewController: UIViewController {
         view.delegate = self
         view.dataSource = self
         view.register(PopularMovieCell.self, forCellReuseIdentifier: PopularMovieCell.cellName)
-        return view
-    }()
-    
-    private lazy var newToken: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.textColor = .black
-        view.text = "popular"
-        
         return view
     }()
 
@@ -81,9 +73,8 @@ class PopularMovieViewController: UIViewController {
             switch result{
             case let .success(popularMovie):
                 self.popularMovie = popularMovie.results
-                self.tableView.reloadData()
                 DispatchQueue.main.async {
-                    self.newToken.text = "\(popularMovie.totalResults)"
+                    self.tableView.reloadData()
                 }
             case let .failure(error):
                 print("\(error.localizedDescription) errr" )
@@ -102,7 +93,16 @@ extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularMovieCell.cellName) as? PopularMovieCell else {return 
             UITableViewCell()
         }
+        
         cell.titleLabel.text = "\(popularMovie[indexPath.row].original_title)"
+        cell.releaseData.text = "\(popularMovie[indexPath.row].release_date)"
+        cell.overviewLabel.text = "\(popularMovie[indexPath.row].overview)"
+        
+//        let image = popularMovie[indexPath.row].poster_path
+//        if let data = image?.data(using: .unicode) {
+//            let image = UIImage(data: data)
+//            cell.movieImage.image = image
+//        }
         
         return cell
     }

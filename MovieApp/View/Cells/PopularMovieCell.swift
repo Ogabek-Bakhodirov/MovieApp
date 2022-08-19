@@ -11,7 +11,7 @@ class PopularMovieCell: UITableViewCell{
     
     static var cellName: String = String(describing: PopularMovieCell.self)
     
-    private lazy var movieImage: UIImageView = {
+    private(set) lazy var movieImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "pc_movieImage")
@@ -23,9 +23,21 @@ class PopularMovieCell: UITableViewCell{
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = "Title"
+        view.numberOfLines = 0
         view.font = .systemFont(ofSize: 16)
         view.contentMode = .center
         
+        return view
+    }()
+    
+    private(set) lazy var overviewLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = "overview"
+        view.numberOfLines = 5
+        view.font = .systemFont(ofSize: 16)
+        view.contentMode = .center
+        view.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .vertical)
         return view
     }()
     
@@ -41,11 +53,11 @@ class PopularMovieCell: UITableViewCell{
     }()
     
     private(set) lazy var movieTitleInfoStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [titleLabel, releaseData])
+        let view = UIStackView(arrangedSubviews: [titleLabel, overviewLabel, releaseData])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.spacing = 3
         view.axis = .vertical
-        view.distribution = .fill
+        view.distribution = .fillProportionally
         
         return view
     }()
@@ -64,8 +76,8 @@ class PopularMovieCell: UITableViewCell{
         addSubview(movieTitleInfoStackView)
         
         NSLayoutConstraint.activate([
-            movieTitleInfoStackView.topAnchor.constraint(equalTo: topAnchor),
-            movieTitleInfoStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -40),
+            movieTitleInfoStackView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            movieTitleInfoStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             movieTitleInfoStackView.leftAnchor.constraint(equalTo: movieImage.rightAnchor,constant: 15),
             movieTitleInfoStackView.rightAnchor.constraint(equalTo: rightAnchor),
 

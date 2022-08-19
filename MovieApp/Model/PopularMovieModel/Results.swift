@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Results: Codable{
+struct Results: Codable {
     var poster_path: String?
     var adult: Bool
     var overview: String
@@ -18,8 +18,8 @@ struct Results: Codable{
     var original_language: String
     var title: String
     var backdrop_path: String?
-    var popularity: Int
+    var popularity: Double
     var vote_count: Int
     var video: Bool
-    var vote_average: Int
+    var vote_average: Double
 }
