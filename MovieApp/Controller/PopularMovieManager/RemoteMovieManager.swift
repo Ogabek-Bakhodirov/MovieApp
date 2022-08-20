@@ -22,7 +22,7 @@ class RemoteMovieManager: PopularMovieProtocol{
                         URLQueryItem(name: "language", value: "en-US"),
                         URLQueryItem(name: "page", value: "1")]
  
-        guard let url = URL(string: "\(urlComponent)") else {return}
+        guard let url = URL(string: "\(MovieTypeURL.url)") else {return}
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) {data, response, error in 
             guard let data = data, let response = response else {
@@ -37,27 +37,7 @@ class RemoteMovieManager: PopularMovieProtocol{
             }
             return completion(.success(popularMovie))
         }
+        print(typeURL.popular.rawValue)
         task.resume()
     }
-    
-    //MARK: - Get Movie Image
-//    func getImage(completion: @escaping ((UIImage?, Error?) -> Void)){
-//        var movieImageURL: String?
-//        var image: UIImage?
-//        popularMovieViewController.sendMovieInfo = { imageURL in
-//            movieImageURL = imageURL
-//        }
-//                
-//        if let url = URL(string: "https://image.tmdb.org/t/p/w500/\(movieImageURL)"){
-//            let imageRequest = URLRequest(url: url)
-//            let dataTask = URLSession.shared.dataTask(with: imageRequest) { data, response, error in
-//                guard let data = data, let _ = response else {
-//                    return completion(nil, error)
-//                }
-//                image = UIImage(data: data)
-//                completion(image, nil)
-//            }
-//            dataTask.resume() 
-//        }
-//    }
 }

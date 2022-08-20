@@ -25,7 +25,6 @@ class TopRatedCell: UITableViewCell{
         view.text = "Title"
         view.font = .systemFont(ofSize: 16)
         view.contentMode = .center
-        
         return view
     }()
     
@@ -36,7 +35,6 @@ class TopRatedCell: UITableViewCell{
         view.textColor = .gray
         view.font = .systemFont(ofSize: 15)
         view.contentMode = .center
-        
         return view
     }()
     
@@ -46,7 +44,6 @@ class TopRatedCell: UITableViewCell{
         view.spacing = 3
         view.axis = .vertical
         view.distribution = .fill
-        
         return view
     }()
     
@@ -74,7 +71,6 @@ class TopRatedCell: UITableViewCell{
             movieImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
             movieImage.widthAnchor.constraint(equalToConstant: 120),
             movieImage.heightAnchor.constraint(equalToConstant: 150),
-
         ])
     }
 }

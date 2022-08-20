@@ -26,7 +26,6 @@ class PopularMovieCell: UITableViewCell{
         view.numberOfLines = 0
         view.font = .systemFont(ofSize: 16)
         view.contentMode = .center
-        
         return view
     }()
     
@@ -48,7 +47,6 @@ class PopularMovieCell: UITableViewCell{
         view.textColor = .gray
         view.font = .systemFont(ofSize: 15)
         view.contentMode = .center
-        
         return view
     }()
     
@@ -58,7 +56,6 @@ class PopularMovieCell: UITableViewCell{
         view.spacing = 3
         view.axis = .vertical
         view.distribution = .fillProportionally
-        
         return view
     }()
     
@@ -86,7 +83,6 @@ class PopularMovieCell: UITableViewCell{
             movieImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
             movieImage.widthAnchor.constraint(equalToConstant: 120),
             movieImage.heightAnchor.constraint(equalToConstant: 150),
-
         ])
     }
 }

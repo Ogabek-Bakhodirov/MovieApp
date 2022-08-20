@@ -9,6 +9,5 @@ import Foundation
 
 class LocalMovieManager: PopularMovieProtocol{
     func getPopularMovie(completion: @escaping ((PopularMovieResult) -> Void)) {
-        
     }
 }

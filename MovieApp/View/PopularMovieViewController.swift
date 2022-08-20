@@ -97,6 +97,8 @@ extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource
         cell.titleLabel.text = "\(movie.original_title)"
         cell.releaseData.text = "\(movie.release_date)"
         cell.overviewLabel.text = "\(movie.overview)"
+        cell.titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        
         cell.movieImage.loadImageFromURL(stringURL: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
         return cell
     }
