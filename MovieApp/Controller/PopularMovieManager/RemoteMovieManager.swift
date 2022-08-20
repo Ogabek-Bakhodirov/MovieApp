@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 class RemoteMovieManager: PopularMovieProtocol{
+
+    var popularMovieViewController = PopularMovieViewController()
+    
     func getPopularMovie(completion: @escaping ((PopularMovieResult) -> Void)) {
         
         var urlComponent = URLComponents()
@@ -31,8 +35,29 @@ class RemoteMovieManager: PopularMovieProtocol{
                 }
                 return
             }
-            completion(.success(popularMovie))
+            return completion(.success(popularMovie))
         }
         task.resume()
     }
+    
+    //MARK: - Get Movie Image
+//    func getImage(completion: @escaping ((UIImage?, Error?) -> Void)){
+//        var movieImageURL: String?
+//        var image: UIImage?
+//        popularMovieViewController.sendMovieInfo = { imageURL in
+//            movieImageURL = imageURL
+//        }
+//                
+//        if let url = URL(string: "https://image.tmdb.org/t/p/w500/\(movieImageURL)"){
+//            let imageRequest = URLRequest(url: url)
+//            let dataTask = URLSession.shared.dataTask(with: imageRequest) { data, response, error in
+//                guard let data = data, let _ = response else {
+//                    return completion(nil, error)
+//                }
+//                image = UIImage(data: data)
+//                completion(image, nil)
+//            }
+//            dataTask.resume() 
+//        }
+//    }
 }

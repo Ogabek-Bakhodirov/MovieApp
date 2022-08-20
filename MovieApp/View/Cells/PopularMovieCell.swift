@@ -14,7 +14,7 @@ class PopularMovieCell: UITableViewCell{
     private(set) lazy var movieImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "pc_movieImage")
+        view.loadImageFromURL(stringURL: "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg")
         view.contentMode = .scaleAspectFill
         return view
     }()

@@ -11,7 +11,6 @@ class PopularMovieViewController: UIViewController {
     
     var loader: PopularMovieProtocol?
     var popularMovie: [Results] = []
-    var movieImage: MovieImage?
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -83,6 +82,7 @@ class PopularMovieViewController: UIViewController {
     }
 }
 
+//MARK: - PopularMovieViewController extension
 extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         popularMovie.count
@@ -93,17 +93,22 @@ extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularMovieCell.cellName) as? PopularMovieCell else {return 
             UITableViewCell()
         }
-        
-        cell.titleLabel.text = "\(popularMovie[indexPath.row].original_title)"
-        cell.releaseData.text = "\(popularMovie[indexPath.row].release_date)"
-        cell.overviewLabel.text = "\(popularMovie[indexPath.row].overview)"
-        
-//        let image = popularMovie[indexPath.row].poster_path
-//        if let data = image?.data(using: .unicode) {
-//            let image = UIImage(data: data)
-//            cell.movieImage.image = image
-//        }
-        
+        let movie = popularMovie[indexPath.row]
+        cell.titleLabel.text = "\(movie.original_title)"
+        cell.releaseData.text = "\(movie.release_date)"
+        cell.overviewLabel.text = "\(movie.overview)"
+        cell.movieImage.loadImageFromURL(stringURL: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
         return cell
+    }
+}
+
+extension UIImageView{
+    func loadImageFromURL(stringURL: String){
+        guard let url = URL(string: stringURL) else {return}
+        DispatchQueue.main.async { [weak self] in
+            guard let data = try? Data(contentsOf: url) else {return}
+            guard let imageData = UIImage(data: data) else {return}
+            self?.image = imageData
+        }
     }
 }
