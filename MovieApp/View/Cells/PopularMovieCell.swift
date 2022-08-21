@@ -15,6 +15,8 @@ class PopularMovieCell: UITableViewCell{
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFill
+        view.layer.cornerRadius = 8
+        view.layer.masksToBounds = true
         return view
     }()
     

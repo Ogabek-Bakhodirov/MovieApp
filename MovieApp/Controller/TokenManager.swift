@@ -19,8 +19,8 @@ class TokenManager{
         let request = URLRequest(url: url)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in 
-            guard let data = data, let response = response else { 
-                return completion(.failure(WrongURL().wrongURL(error: error as! Error)))
+            guard let data = data, let _ = response else { 
+                return completion(.failure(WrongURL().wrongURL(error: error!)))
             }
              let decoder = JSONDecoder()
             guard let newToken = try? decoder.decode(TokenModel.self, from: data) else {

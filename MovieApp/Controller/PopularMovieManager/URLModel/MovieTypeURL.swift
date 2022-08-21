@@ -13,7 +13,4 @@ enum typeURL: String{
     case topRated = "https://api.themoviedb.org/3/movie/top_rated?api_key=a86762fb6e7d30af415377e4d8eb69d8&language=en-US&page=1"
 }
 
-struct MovieTypeURL{
-    static var url = typeURL.upcoming.rawValue
-}
-
+let currentURLType: typeURL = .popular

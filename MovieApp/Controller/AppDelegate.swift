@@ -17,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         let tabbarViewController = TabBarController()
-        window?.rootViewController = tabbarViewController
+        let navigationVC = UINavigationController(rootViewController: tabbarViewController)
+        navigationVC.navigationBar.topItem?.title = "Movies"
+        navigationVC.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+//        navigationVC.navigationBar.backgroundColor = #colorLiteral(red: 0.05196797848, green: 0.1966994107, blue: 0.3150942922, alpha: 1)
+        window?.rootViewController = navigationVC
         return true
     }
 }
