@@ -70,8 +70,8 @@ class PopularMovieViewController: UIViewController {
     private func fetchData(){
         loader?.getPopularMovie(completion: { result in
             switch result{
-            case let .success(popularMovie):
-                self.popularMovie = popularMovie.results
+            case let .success(movie):
+                self.popularMovie = movie.results
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }

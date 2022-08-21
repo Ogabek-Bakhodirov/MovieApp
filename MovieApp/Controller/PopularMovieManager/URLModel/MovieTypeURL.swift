@@ -14,5 +14,6 @@ enum typeURL: String{
 }
 
 struct MovieTypeURL{
-    static var url = typeURL.popular.rawValue
+    static var url = typeURL.upcoming.rawValue
 }
+

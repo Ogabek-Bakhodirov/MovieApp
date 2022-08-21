@@ -8,7 +8,9 @@
 import UIKit
 
 class UpComingMovieViewController: UIViewController{
-    var loader: PopularMovieProtocol?  
+    
+    var loader: PopularMovieProtocol? 
+    var upcomingMovie: [Results] = []
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -40,7 +42,7 @@ class UpComingMovieViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubviews()
-//        fetchData()
+        fetchData()
     }
 
     private func setupSubviews(){
@@ -67,30 +69,40 @@ class UpComingMovieViewController: UIViewController{
         ])
     }
     
-//    private func fetchData(){
-//        loader?.getPopularMovie(completion: { result in
-//            switch result{
-//            case let .success(popularMovie):
-//                DispatchQueue.main.async {
-//                    self.newToken.text = "\(popularMovie.result?[0].adult)"
-//                    print(popularMovie)
-//                }
-//            case let .failure(error):
-//                print("\(error.localizedDescription) errr" )
-//            }
-//        }) 
-//    }
+    private func fetchData(){
+        loader?.getPopularMovie(completion: { result in
+            switch result {
+            case .success(let movie):
+                
+                self.upcomingMovie = movie.results
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        })
+    }
 }
 
 extension UpComingMovieViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        upcomingMovie.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UpComingCell.cellName) as? UpComingCell else {
             return UITableViewCell()
         }
+        
+        let movie = upcomingMovie[indexPath.row]
+        
+        cell.titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
+        cell.titleLabel.text = upcomingMovie[indexPath.row].original_title
+        cell.overviewLabel.text = movie.overview
+        cell.releaseData.text = movie.release_date
+        cell.movieImage.loadImageFromURL(stringURL:"https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
+        
         return cell
     }
 } 

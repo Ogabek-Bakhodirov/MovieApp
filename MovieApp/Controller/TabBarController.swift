@@ -29,7 +29,7 @@ class TabBarController: UITabBarController{
         upcomingMoviePage.tabBarItem.image = .init(systemName: "sparkles")
         upcomingMoviePage.tabBarItem.title = "Upcoming"
 //        MovieTypeURL.url = typeURL.upcoming.rawValue
-//        upcomingMoviePage.loader = RemoteMovieManager()
+        upcomingMoviePage.loader = RemoteMovieManager()
         
         let topRatedPage = TopRatedViewController()
         topRatedPage.tabBarItem.image = .init(systemName: "crown")

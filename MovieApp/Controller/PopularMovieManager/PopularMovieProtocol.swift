@@ -8,7 +8,7 @@
 import Foundation
 
 enum PopularMovieResult{
-    case success(PopularMovieModel)
+    case success(MovieModel)
     case failure(Error)
 }
 
