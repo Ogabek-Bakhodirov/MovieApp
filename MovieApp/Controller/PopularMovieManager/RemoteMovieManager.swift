@@ -10,11 +10,11 @@ import UIKit
 
 class RemoteMovieManager: PopularMovieProtocol{
 
-    var popularMovieViewController = PopularMovieViewController()
+//    var popularMovieViewController = PopularMovieViewController()
     
-    func getPopularMovie(completion: @escaping ((PopularMovieResult) -> Void)) {
+    func getPopularMovie(url: typeURL, completion: @escaping ((PopularMovieResult) -> Void)) {
 
-        guard let url = URL(string: "\(MovieTypeURL.url)") else {return}
+        guard let url = URL(string: url.rawValue) else {return}
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) {data, response, error in 
             guard let data = data, let response = response else {

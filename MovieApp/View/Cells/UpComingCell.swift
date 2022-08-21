@@ -14,7 +14,6 @@ class UpComingCell: UITableViewCell{
     private(set) lazy var movieImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "pc_upcomingMovie")
         view.contentMode = .scaleAspectFill
         return view
     }()

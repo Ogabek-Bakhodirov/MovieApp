@@ -13,5 +13,5 @@ enum PopularMovieResult{
 }
 
 protocol PopularMovieProtocol{
-    func getPopularMovie(completion: @escaping ((PopularMovieResult) -> Void))
+    func getPopularMovie(url: typeURL, completion: @escaping ((PopularMovieResult) -> Void))
 }

@@ -11,10 +11,9 @@ class TopRatedCell: UITableViewCell{
     
     static var cellName: String = String(describing: TopRatedCell.self)
     
-    private lazy var movieImage: UIImageView = {
+    private(set) lazy var movieImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "pc_topRated")
         view.contentMode = .scaleAspectFill
         return view
     }()
@@ -25,6 +24,17 @@ class TopRatedCell: UITableViewCell{
         view.text = "Title"
         view.font = .systemFont(ofSize: 16)
         view.contentMode = .center
+        return view
+    }()
+    
+    private(set) lazy var overviewLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = "overview"
+        view.numberOfLines = 5
+        view.font = .systemFont(ofSize: 16)
+        view.contentMode = .center
+        view.setContentHuggingPriority(UILayoutPriority(rawValue: 249), for: .vertical)
         return view
     }()
     
@@ -39,7 +49,7 @@ class TopRatedCell: UITableViewCell{
     }()
     
     private(set) lazy var movieTitleInfoStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [titleLabel, releaseData])
+        let view = UIStackView(arrangedSubviews: [titleLabel, overviewLabel, releaseData])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.spacing = 3
         view.axis = .vertical

@@ -22,20 +22,17 @@ class TabBarController: UITabBarController{
         let popularMoviePage = PopularMovieViewController()
         popularMoviePage.tabBarItem.image = .init(systemName: "flame")
         popularMoviePage.tabBarItem.title = "Popular"
-        typeURL.popular.rawValue
         popularMoviePage.loader = RemoteMovieManager()
         
         let upcomingMoviePage = UpComingMovieViewController()
         upcomingMoviePage.tabBarItem.image = .init(systemName: "sparkles")
         upcomingMoviePage.tabBarItem.title = "Upcoming"
-//        MovieTypeURL.url = typeURL.upcoming.rawValue
         upcomingMoviePage.loader = RemoteMovieManager()
         
         let topRatedPage = TopRatedViewController()
         topRatedPage.tabBarItem.image = .init(systemName: "crown")
         topRatedPage.tabBarItem.title = "Top Rated"
-//        typeURL.topRated
-//        topRatedPage.loader = RemoteMovieManager()
+        topRatedPage.loader = RemoteMovieManager()
 
         viewControllers = [popularMoviePage, upcomingMoviePage, topRatedPage]
         setViewControllers(viewControllers, animated: true)

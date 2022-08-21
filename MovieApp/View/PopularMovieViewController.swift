@@ -68,7 +68,7 @@ class PopularMovieViewController: UIViewController {
     }
     
     private func fetchData(){
-        loader?.getPopularMovie(completion: { result in
+        loader?.getPopularMovie(url: .popular, completion: { result in
             switch result{
             case let .success(movie):
                 self.popularMovie = movie.results
@@ -99,7 +99,7 @@ extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource
         cell.overviewLabel.text = "\(movie.overview)"
         cell.titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
-        cell.movieImage.loadImageFromURL(stringURL: "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
+        cell.movieImage.loadImageFromURL(stringURL: "https://image.tmdb.org/t/p/w200\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
         return cell
     }
 }

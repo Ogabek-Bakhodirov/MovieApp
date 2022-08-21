@@ -70,7 +70,7 @@ class UpComingMovieViewController: UIViewController{
     }
     
     private func fetchData(){
-        loader?.getPopularMovie(completion: { result in
+        loader?.getPopularMovie(url: .upcoming, completion: { result in
             switch result {
             case .success(let movie):
                 
@@ -101,7 +101,7 @@ extension UpComingMovieViewController: UITableViewDelegate, UITableViewDataSourc
         cell.titleLabel.text = upcomingMovie[indexPath.row].original_title
         cell.overviewLabel.text = movie.overview
         cell.releaseData.text = movie.release_date
-        cell.movieImage.loadImageFromURL(stringURL:"https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
+        cell.movieImage.loadImageFromURL(stringURL:"https://image.tmdb.org/t/p/w200\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
         
         return cell
     }
