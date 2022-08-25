@@ -32,7 +32,6 @@ class PopularMovieViewController: UIViewController {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
@@ -78,8 +77,11 @@ extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movieID = popularMovie[indexPath.row].id
         let movieInfoViewController = MovieInfoViewController()
+        
         movieInfoViewController.modalPresentationStyle = .fullScreen
+        movieInfoViewController.movieID = movieID
         movieInfoViewController.modalTransitionStyle = .coverVertical
         navigationController?.pushViewController(movieInfoViewController, animated: true)
     }
