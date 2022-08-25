@@ -29,7 +29,8 @@ class MovieInfoViewController: UIViewController{
     func fetchMovieKey(){
         RemoteMovieInfoLoader().fetchMovieInfo(movieID: movieID) { movieInfo, error in
             if error == nil{
-                self.movieKey = movieInfo?.results?[0].key
+                guard let key = movieInfo?.results?[0].key else {return}
+                self.movieKey = key
                 self.fetchMoviePreview()
             }
         }
@@ -59,8 +60,4 @@ class MovieInfoViewController: UIViewController{
         ])
     }
 }
-    
 
-//                    self.view.addSubview(linkPreview)
-//                    linkPreview.frame = CGRect(x: 0, y: 0, width: 250, height: 250)
-//                    linkPreview.center = self.view.center 
