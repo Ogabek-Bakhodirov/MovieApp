@@ -71,14 +71,20 @@ extension TopRatedViewController: UITableViewDelegate, UITableViewDataSource{
         cell.titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
         cell.overviewLabel.text = movie.overview
         cell.releaseData.text = movie.release_date
-        cell.movieImage.loadImageFromURL(stringURL: "https://image.tmdb.org/t/p/w200\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            cell.movieImage.loadImageFromURL(stringURL: "https://image.tmdb.org/t/p/w200\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movieID = topRatedMovie[indexPath.row].id
         let movieInfoViewController = MovieInfoViewController()
+        
         movieInfoViewController.modalPresentationStyle = .fullScreen
+        movieInfoViewController.movieID = movieID
         movieInfoViewController.modalTransitionStyle = .coverVertical
         navigationController?.pushViewController(movieInfoViewController, animated: true)
     }

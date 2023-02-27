@@ -41,10 +41,12 @@ class MovieInfoViewController: UIViewController{
         let string = "https://m.youtube.com/watch?v=\(movieKey)"//86-rEgNtyQw
         guard let url = URL(string: string) else {return}
         let provider = LPMetadataProvider()
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInitiated).async {
             provider.startFetchingMetadata(for: url) { [weak self] metaData, err in
-            if let metaData = metaData, err == nil{
-                    self?.linkPreview.metadata = metaData
+                if let metaData = metaData, err == nil{
+                    DispatchQueue.main.async {
+                        self?.linkPreview.metadata = metaData
+                    }
                 }
             }
         }

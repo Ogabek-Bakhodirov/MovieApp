@@ -8,6 +8,6 @@
 import Foundation
 
 class LocalMovieManager: PopularMovieProtocol{
-    func getPopularMovie(url: typeURL, completion: @escaping ((PopularMovieResult) -> Void)) {
+    func getPopularMovie(url: TypeURL, completion: @escaping ((PopularMovieResult) -> Void)) {
     }
 }

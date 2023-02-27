@@ -10,13 +10,13 @@ import UIKit
 
 class RemoteMovieManager: PopularMovieProtocol{
     
-    func getPopularMovie(url: typeURL, completion: @escaping ((PopularMovieResult) -> Void)) {
+    func getPopularMovie(url: TypeURL, completion: @escaping ((PopularMovieResult) -> Void)) {
 
         guard let url = URL(string: url.rawValue) else {return}
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) {data, response, error in 
             guard let data = data, let _ = response else {
-                return completion(.failure(UnExpectedData().unExpectedData() as! Error))
+                return completion(.failure(UnExpectedData().unExpectedData() as!  Error)) 
             }
             let decoder = JSONDecoder()
             guard let popularMovie = try? decoder.decode(MovieModel.self, from: data) else {

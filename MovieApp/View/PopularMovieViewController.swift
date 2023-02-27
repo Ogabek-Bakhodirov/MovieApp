@@ -72,7 +72,10 @@ extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource
         cell.overviewLabel.text = "\(movie.overview)"
         cell.titleLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
-        cell.movieImage.loadImageFromURL(stringURL: "https://image.tmdb.org/t/p/w200\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
+        DispatchQueue.global(qos: .userInteractive).async {
+            cell.movieImage.loadImageFromURL(stringURL: "https://image.tmdb.org/t/p/w200\(movie.poster_path ?? "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg")")
+        }
+        
         return cell
     }
     
@@ -90,11 +93,14 @@ extension PopularMovieViewController: UITableViewDelegate, UITableViewDataSource
 //MARK: - UIImageView extension
 extension UIImageView{
     func loadImageFromURL(stringURL: String){
-        guard let url = URL(string: stringURL) else {return}
-        DispatchQueue.main.async { [weak self] in
+        DispatchQueue.global().async {
+            guard let url = URL(string: stringURL) else {return}
             guard let data = try? Data(contentsOf: url) else {return}
             guard let imageData = UIImage(data: data) else {return}
-            self?.image = imageData
+            
+            DispatchQueue.main.async { [weak self] in 
+                self?.image = imageData
+            }
         }
     }
 }
