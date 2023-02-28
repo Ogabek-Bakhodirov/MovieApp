@@ -55,10 +55,10 @@ class MovieInfoViewController: UIViewController{
     func setupLinkPreview(){
         view.addSubview(linkPreview)
         NSLayoutConstraint.activate([
-            linkPreview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            linkPreview.leftAnchor.constraint(equalTo: view.leftAnchor),
-            linkPreview.rightAnchor.constraint(equalTo: view.rightAnchor),
-            linkPreview.heightAnchor.constraint(equalToConstant: 250)
+            linkPreview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            linkPreview.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            linkPreview.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            linkPreview.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
 }

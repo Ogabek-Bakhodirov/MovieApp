@@ -87,7 +87,6 @@ class UpComingCell: UITableViewCell{
             movieImage.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
             movieImage.widthAnchor.constraint(equalToConstant: 120),
             movieImage.heightAnchor.constraint(equalToConstant: 150),
-
         ])
     }
 }
